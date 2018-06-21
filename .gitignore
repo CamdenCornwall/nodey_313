@@ -10,3 +10,5 @@ npm-debug.log
 # Docker
 Dockerfile
 docker-compose.yml
+/NodeJsWebApplication/nbproject/private/
+/nbproject/private/
