@@ -1,9 +1,17 @@
+
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php
+session_start();
+if (isset($_POST['Submit'])) {
+        $_SESSION['mail'] = $_POST['mail'];
+        $mailTime = $_SESSION['uname'];
+            echo 'Not Logged in......';
+            //header('location: \assignments\displayNotes.php');
+    }
+else {//echo 'Not Logged in......';
+}
+?>
+
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -11,11 +19,13 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form>
+        <form action="/submit-postage" method="POST">
+            <input type="text" placeholder="5" name="weight" required> lbs<br>
             <input type="radio" name="mail" value="stamped" checked> Letters (Stamped)<br>
             <input type="radio" name="mail" value="metered"> Letters (Metered)<br>
             <input type="radio" name="mail" value="flats"> Large Envelopes (Flats)<br>
-            <input type="radio" name="mail" value="retail"> First-Class Package Service—Retail<br>
+            <input type="radio" name="mail" value="retail"> First-Class Package Service—Retail<br><br>
+            <input type="submit" name="Submit" value='Checkout'/>
         </form>
     </body>
 </html>
