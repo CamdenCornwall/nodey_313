@@ -83,22 +83,6 @@ io.on('connection', (socket) => {
     }
   });
 });
-//////////////////////////////////////////////////////////////////////
-
-//const cool = require('cool-ascii-faces');
-//var url = require('url');
-//const PORT = process.env.PORT || 5000;
-
-//express()
-//  .use(express.static(path.join(__dirname, 'public')))
-//  .set('views', path.join(__dirname, 'views'))
-//  .engine('html', require('ejs').renderFile)
-//  .set('view engine', 'ejs')
-//  .get('/', (req, res) => res.render('pages/index'))
-//  .get('/submit-postage', function(req, res) {postageCalc(req, res);})
-//  .get('/postage', (req, res) => res.render('pages/postage'))
-//  .get('/cool', (req, res) => res.send(cool()));
-  //.listen(port, () => console.log(`Listening on ${ port }`));
   
 /////////////////////////////////////////////////////////////////////////////
 function postageCalc(request, response){
