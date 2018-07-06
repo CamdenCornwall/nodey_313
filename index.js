@@ -4,7 +4,11 @@ var app = express();
 var path = require('path');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-var port = process.env.PORT || 3000;
+
+const cool = require('cool-ascii-faces');
+var url = require('url');
+
+var port = process.env.PORT || 5000;
 
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
@@ -12,7 +16,12 @@ server.listen(port, () => {
 
 // Routing
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.set('views', path.join(__dirname, 'views'));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+app.get('/cool', (req, res) => res.send(cool()));
+app.get('/submit-postage', function(req, res) {postageCalc(req, res);});
+app.get('/postage', (req, res) => res.render('pages/postage'));
 // Chatroom
 
 var numUsers = 0;
@@ -76,20 +85,20 @@ io.on('connection', (socket) => {
 });
 //////////////////////////////////////////////////////////////////////
 
-const cool = require('cool-ascii-faces');
-var url = require('url');
-const PORT = process.env.PORT || 5000;
+//const cool = require('cool-ascii-faces');
+//var url = require('url');
+//const PORT = process.env.PORT || 5000;
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .engine('html', require('ejs').renderFile)
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .get('/submit-postage', function(req, res) {postageCalc(req, res);})
-  .get('/postage', (req, res) => res.render('pages/postage'))
-  .get('/cool', (req, res) => res.send(cool()))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+//express()
+//  .use(express.static(path.join(__dirname, 'public')))
+//  .set('views', path.join(__dirname, 'views'))
+//  .engine('html', require('ejs').renderFile)
+//  .set('view engine', 'ejs')
+//  .get('/', (req, res) => res.render('pages/index'))
+//  .get('/submit-postage', function(req, res) {postageCalc(req, res);})
+//  .get('/postage', (req, res) => res.render('pages/postage'))
+//  .get('/cool', (req, res) => res.send(cool()));
+  //.listen(port, () => console.log(`Listening on ${ port }`));
   
 /////////////////////////////////////////////////////////////////////////////
 function postageCalc(request, response){
