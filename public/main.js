@@ -160,7 +160,7 @@ $(function() {
 
       setTimeout(() => {
         var typingTimer = (new Date()).getTime();
-        var timeDiff = typingTimer - lastTypingTime;
+        var timeDiff = typingTimer - lastTypingTime - 30;
         if (timeDiff >= TYPING_TIMER_LENGTH && typing) {
           socket.emit('stop typing');
           typing = false;
